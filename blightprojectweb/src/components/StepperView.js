@@ -7,6 +7,8 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import { SendImage } from '../API/api';
+
 
 
 const steps = [
@@ -30,12 +32,15 @@ const steps = [
   ];
   
 
-export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL}) {
+export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected}) {
+
 
     const [activeStep, setActiveStep] = React.useState(0);
+    const [sending, setSending] = React.useState(false)
     
 
     const handleNext = () => {
+        
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 
@@ -92,7 +97,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                     {
                         index ===1 ?(
                             <div className='container'>
-                            <img src = {imageURL}></img>
+                                <img src = {imageURL}></img>
                             </div>
                         ):(null)
                     }
@@ -103,13 +108,20 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                         </div>): null 
                     }
                     <Box sx={{ mb: 2 }}>
+                        { someThingSelected?
 
-                        <Button
+                        (<div><Button
                             variant="contained"
-                            onClick={handleNext}
+                            onClick={index===1?(e)=>{
+                                e.preventDefault()
+                                setSending(true)
+                                SendImage(JSON.stringify(imageURL))
+                                setSending(false)
+                            }:handleNext}
                             sx={{ mt: 1, mr: 1 }}
+                            loading = {sending}
                         >
-                            {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                            {index === steps.length - 1 ? 'Finish' : index === 0 && !usingCamera?'Click To Preview':'Continue'}
                         </Button>
                         <Button
                             disabled={index === 0 && usingCamera?false: false}
@@ -117,7 +129,8 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                             sx={{ mt: 1, mr: 1 }}
                         >
                             {index === 0?'clear image': 'Back'}
-                        </Button>
+                        </Button></div>):( null)
+                        }
                     </Box>
                     </StepContent>
                 </Step>

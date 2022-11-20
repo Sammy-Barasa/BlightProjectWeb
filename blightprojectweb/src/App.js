@@ -11,10 +11,12 @@ function App(){
   let photoRef = useRef(null)
   const [usingCamera, setUsingCamera] = React.useState(false);
   const [imageDataUrl, setImageDataUrl] = React.useState(null)
+  const [someThingSelected,setSomeThingSelected] = React.useState(false)
 
   const handleDeviceImageUpload = (e)=>{
     alert("Image upload from device")
     e.preventDefault()
+    setSomeThingSelected(true)
     setImageDataUrl(URL.createObjectURL(e.target.files[0]))
   }
   const handleClearImage = ()=>{
@@ -25,6 +27,7 @@ function App(){
   }
   const handleTakephoto = ()=>{
     // image width and height
+    setSomeThingSelected(true);
     let width = 670;
 
     let height = 420;
@@ -88,7 +91,7 @@ function App(){
       </header>
       <section className="App-content">
         <StepperView photoRef={photoRef} videoRef={videoRef} handleTakePhoto={handleTakephoto} 
-        usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl}/>
+        usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl} someThingSelected = {someThingSelected}/>
       </section>
       <footer className = "App-footer">
         <FootAppBar cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>

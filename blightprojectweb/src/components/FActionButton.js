@@ -35,15 +35,18 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
         text="Upload Image from device"
         // onClick={handleDeviceImageUpload}
     >
-        <InsertPhotoIcon color='success'>
+        {/* <InsertPhotoIcon color='success'> */}
         <input
             type="file"
             id="fileElem"
             multiple
             accept="image/*"
             onChange = {handleDeviceImageUpload}
-        ></input>
-        </InsertPhotoIcon>
+            visibility = "false"
+        >
+          {/* <InsertPhotoIcon color='success'/> */}
+        </input>
+        {/* </InsertPhotoIcon> */}
     </Action>
         
     <Action
