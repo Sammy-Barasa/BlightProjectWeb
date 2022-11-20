@@ -41,7 +41,7 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
             id="fileElem"
             multiple
             accept="image/*"
-            onChange = {handleDeviceImageUpload }
+            onChange = {handleDeviceImageUpload}
         ></input>
         </InsertPhotoIcon>
     </Action>
@@ -54,13 +54,7 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
         
         </PhotoCameraIcon>
     </Action>
-  
-    {/* <SomeCustomComponent
-        text="Foobar!"
-        onClick={handleTheFooBarOnClick}
-    >
-      <i className="fa fa-foo-bar-fa-foo" />
-    </SomeCustomComponent> */}
+
     </Fab>
   )
 }

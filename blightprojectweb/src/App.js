@@ -5,16 +5,17 @@ import FootAppBar from './components/FootAppBar';
 import TopAppBar from './components/TopAppBar';
 import DrawView from './components/DrawView';
 
-function App() {
+function App(){
 
   let videoRef = useRef(null)
   let photoRef = useRef(null)
   const [usingCamera, setUsingCamera] = React.useState(false);
   const [imageDataUrl, setImageDataUrl] = React.useState(null)
 
-  const someFunctionForTheMainButton = ()=>{}
-  const handleDeviceImageUpload = ()=>{
+  const handleDeviceImageUpload = (e)=>{
     alert("Image upload from device")
+    e.preventDefault()
+    setImageDataUrl(URL.createObjectURL(e.target.files[0]))
   }
   const handleClearImage = ()=>{
     let photo = photoRef.current
@@ -51,7 +52,7 @@ function App() {
     
   }
   const handleCameraAction = ()=>{
-      if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      if('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices){
           // ok, browser supports it
           // alert('ok, browser supports it')
           const constraints = {
@@ -71,7 +72,8 @@ function App() {
           })
           
       }
-    }
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -89,10 +91,12 @@ function App() {
         usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl}/>
       </section>
       <footer className = "App-footer">
-        <FootAppBar cameraAction={handleCameraAction}/>
+        <FootAppBar cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>
       </footer>
     </div>
   );
 }
+
+  
 
 export default App;
