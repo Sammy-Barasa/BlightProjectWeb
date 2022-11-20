@@ -28,9 +28,9 @@ function App(){
   const handleTakephoto = ()=>{
     // image width and height
     setSomeThingSelected(true);
-    let width = 670;
+    let width = 674;
 
-    let height = 420;
+    let height = 450;
 
     
     let photo = photoRef.current;
