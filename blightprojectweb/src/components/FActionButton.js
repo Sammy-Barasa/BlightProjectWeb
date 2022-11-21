@@ -1,8 +1,8 @@
-import React,  { useState }  from 'react'
+import React  from 'react'
 import { Fab, Action } from 'react-tiny-fab';
 import AddIcon from '@mui/icons-material/Add';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+// import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 
 
@@ -16,10 +16,10 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
     color: '#3cd656',
   }
 
-  const actionButtonStyles = {
-    right:40,
-    left: 40,
-  }
+  // const actionButtonStyles = {
+  //   right:40,
+  //   left: 40,
+  // }
   return (
     <Fab
     // mainButtonStyles={mainButtonStyles}
