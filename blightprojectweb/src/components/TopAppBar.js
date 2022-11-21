@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,8 +9,8 @@ import Button from '@mui/material/Button';
 // const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
 
-function DrawerAppBar(props) {
-  const { window} = props;
+function DrawerAppBar() {
+  // const { window} = props;
  
 
   // const container = window !== undefined ? () => window().document.body : undefined;
@@ -41,13 +41,13 @@ function DrawerAppBar(props) {
   );
 }
 
-DrawerAppBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
+// DrawerAppBar.propTypes = {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
  
-};
+// };
 
 export default DrawerAppBar;
