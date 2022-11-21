@@ -44,7 +44,7 @@ function App(){
 
     let ctx = photo.getContext('2d')
 
-    ctx. drawImage(video,0,0, photo.width, photo.height)
+    ctx.drawImage(video,0,0, photo.width, photo.height)
     let image_data_url = photo.toDataURL('image/jpeg');
 
    	// data url of the image

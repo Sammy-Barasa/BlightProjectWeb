@@ -97,7 +97,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                     {
                         index ===1 ?(
                             <div className='container'>
-                                <img src = {imageURL}></img>
+                                <img src = {imageURL}alt="selected leaf"></img>
                             </div>
                         ):(null)
                     }
