@@ -12,6 +12,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
+import { Navigate} from "react-router-dom"
 
 export default function DrawView() {
   const [state, setState] = React.useState({
@@ -21,6 +22,9 @@ export default function DrawView() {
     right: false,
   });
 
+  
+
+  
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -37,13 +41,14 @@ export default function DrawView() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Predict', 'All Predictions','Trash'].map((text, index) => (
+        {['Predict',].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 1 === 0 ? <InboxIcon /> : <MailIcon />}
+                <InboxIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
+              <Navigate to="/" reloadDocument={true}/>
             </ListItemButton>
           </ListItem>
         ))}

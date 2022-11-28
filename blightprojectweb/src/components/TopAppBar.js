@@ -5,9 +5,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import DrawView from './DrawView';
+import { Link } from "react-router-dom";
+
 
 // const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['home', 'about', 'contact'];
 
 function DrawerAppBar() {
   // const { window} = props;
@@ -16,21 +19,28 @@ function DrawerAppBar() {
   // const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex',xs: '200', sm: '500',color:"#fff" }}>
       <AppBar component="nav">
-        <Toolbar>
-
+        <Toolbar >
+        
+        {/* <Typography
+            variant="h6"
+          > */}
+           <DrawView/>
+          {/* </Typography> */}
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: '200', sm: '500' } }}
+            // color="black"
           >
            Blight DetectorML
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item} sx={{ color: '#ffff' }}>
+                <Link to={`/${item}`}>{item}</Link>
+                
               </Button>
             ))}
           </Box>
