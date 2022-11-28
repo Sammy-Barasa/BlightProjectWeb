@@ -24,7 +24,10 @@ export default function FootAppBar({cameraAction, handleDeviceImageUpload }) {
       <CssBaseline />
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         <Toolbar>
+          <div className='App-footer'>
           <FActionButton handleCameraAction={cameraAction} handleDeviceImageUpload ={handleDeviceImageUpload }/>
+          </div>
+          
         </Toolbar>
       </AppBar>
     </React.Fragment>

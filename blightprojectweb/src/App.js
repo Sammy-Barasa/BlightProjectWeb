@@ -70,6 +70,7 @@ function App(){
     // imagetag.src = 
     
   }
+
   const handleCameraAction = ()=>{
       if('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices){
           // ok, browser supports it
@@ -102,7 +103,7 @@ function App(){
           ? FACING_MODE_ENVIRONMENT
           : FACING_MODE_USER
     );
-  }, []);
+  }, [FACING_MODE_ENVIRONMENT,FACING_MODE_USER]);
   
   return (
     <div className="App">
@@ -124,7 +125,7 @@ function App(){
         setUsingCamera = {setUsingCamera} setSomeThingSelected = {setSomeThingSelected} setImageDataUrl={setImageDataUrl}
         />
       </section>
-      <footer className = "App-footer">
+      <footer>
         <FootAppBar cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>
       </footer>
     </div>
