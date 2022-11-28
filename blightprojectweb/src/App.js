@@ -12,19 +12,35 @@ function App(){
   const [usingCamera, setUsingCamera] = React.useState(false);
   const [imageDataUrl, setImageDataUrl] = React.useState(null)
   const [someThingSelected,setSomeThingSelected] = React.useState(false)
+  const [predictionResult, setPredictionResult] = React.useState(null)
+  const FACING_MODE_USER = "user";
+  const FACING_MODE_ENVIRONMENT = "environment";
+  const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
 
   const handleDeviceImageUpload = (e)=>{
     alert("Image upload from device")
     e.preventDefault()
     setSomeThingSelected(true)
-    setImageDataUrl(URL.createObjectURL(e.target.files[0]))
+
+
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = e => {
+    let dataUrl = e.target.result;
+      console.log(dataUrl)
+      setImageDataUrl(dataUrl)
+    }
+    
   }
+
   const handleClearImage = ()=>{
     let photo = photoRef.current
     let ctx = photo.getContext('2d')
     ctx.clearRect(0,0,photo.width, photo.height)
-    setImageDataUrl(null)
+    // setImageDataUrl(null)
+    setSomeThingSelected(false)
   }
+
   const handleTakephoto = ()=>{
     // image width and height
     setSomeThingSelected(true);
@@ -61,6 +77,7 @@ function App(){
           const constraints = {
             video : true,
             audio: false,
+            facingMode: facingMode
           }
                 
           navigator.mediaDevices.getUserMedia(constraints).then((stream)=>{
@@ -76,6 +93,16 @@ function App(){
           
       }
   }
+
+
+  const handleswitch = React.useCallback(() => {
+    setFacingMode(
+      prevState =>
+        prevState === FACING_MODE_USER
+          ? FACING_MODE_ENVIRONMENT
+          : FACING_MODE_USER
+    );
+  }, []);
   
   return (
     <div className="App">
@@ -91,7 +118,11 @@ function App(){
       </header>
       <section className="App-content">
         <StepperView photoRef={photoRef} videoRef={videoRef} handleTakePhoto={handleTakephoto} 
-        usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl} someThingSelected = {someThingSelected}/>
+        usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl}
+        someThingSelected = {someThingSelected} setdatafunc={setPredictionResult}
+        predictionResult = {predictionResult} handleSwitch = {handleswitch}
+        setUsingCamera = {setUsingCamera} setSomeThingSelected = {setSomeThingSelected} setImageDataUrl={setImageDataUrl}
+        />
       </section>
       <footer className = "App-footer">
         <FootAppBar cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>

@@ -8,6 +8,11 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { SendImage } from '../API/api';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import BounceLoader from "react-spinners/BounceLoader";
+import FlipCameraIosIcon from '@mui/icons-material/FlipCameraIos';
 
 
 
@@ -24,20 +29,23 @@ const steps = [
     },
     {
       label: 'Prediction result',
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
+      description: ``,
     },
   ];
   
+  
 
-export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected}) {
+export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected, setdatafunc, predictionResult,handleSwitch, setUsingCamera,setSomeThingSelected,setImageDataUrl}) {
 
+    // const override: CSSProperties = {
+    //     display: "block",
+    //     margin: "0 auto",
+    //     borderColor: "red",
+    //   };
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [sending, setSending] = React.useState(false)
-    
+      
 
     const handleNext = () => {
         
@@ -49,23 +57,27 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
     };
 
     const handleReset = () => {
+        setUsingCamera(false)
+        setSomeThingSelected(false)
+        setImageDataUrl(null)
         setActiveStep(0);
     };
 
+    const handleSending = ()=>{
+        setSending(!sending)
+    }
    
-
-    
-
   return (
     <div>
         <Box sx={{ maxWidth: 400 }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                 <Step key={step.label}>
+                    
                     <StepLabel
                     optional={
                         index === 2 ? (
-                        <Typography variant="caption">Last step</Typography>
+                        <Typography variant="caption">Blight Detector AI results</Typography>
                         ) : null
                     }
                     >
@@ -81,6 +93,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                             </video>
                             
                             {usingCamera?
+                            <>
                             <Button
                             variant="contained"
                             onClick={(e)=>{
@@ -91,15 +104,77 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                             sx={{ mt: 1, mr: 1 }}
                             >
                             Take Photo
-                            </Button>:null}
+                            </Button>
+                            <Button
+                            variant="contained"
+                            onClick={(e)=>{
+                                e.preventDefault()
+                                handleSwitch()
+                                
+                            }}
+                            sx={{ mt: 1, mr: 1 }}
+                            >
+                            <FlipCameraIosIcon/>
+                            </Button></>:null}
                         </div>):null   
                     }
                     {
-                        index ===1 ?(
-                            <div className='container'>
-                                <img src = {imageURL}alt="selected leaf"></img>
+                        index ===1 && sending?(
+                            <div className="spinner">
+                            <BounceLoader
+                                color={"#8be8a1"}
+                                loading={sending}
+                                // cssOverride={override}
+                                size={150}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
                             </div>
-                        ):(null)
+                          ):(index ===1?
+                            (<div className='container'>
+                                {/* <img src = {imageURL}alt=""></img> */}
+                                <Card sx={{ maxWidth: 345 }}>
+                                <CardMedia
+                                    component="img"
+                                    alt="selected leaf"
+                                    height="400"
+                                    image={imageURL}
+                                />
+                                {/* <CardContent> */}
+                                    {/* <Typography gutterBottom variant="h5" component="div">
+                                    {predictionResult.class}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                    {`${predictionResult.percent*100} %`}
+                                    </Typography> */}
+                                {/* </CardContent> */}
+                            </Card>
+                            </div>):(null)
+                        )
+                    }
+                    {
+                        index === 2 && predictionResult?(
+                       
+                            
+                            <div className='containerresult'>
+                            <Card sx={{ maxWidth: 345 }}>
+                                <CardMedia
+                                    component="img"
+                                    alt="green iguana"
+                                    height="140"
+                                    image={imageURL}
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                    {predictionResult.class}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                    {`${predictionResult.percent*100} %`}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                       
+                        </div>):(null)
                     }
                     { usingCamera?
                         (<div className='container'>
@@ -114,14 +189,18 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                             variant="contained"
                             onClick={index===1?(e)=>{
                                 e.preventDefault()
-                                setSending(true)
-                                SendImage(JSON.stringify(imageURL))
-                                setSending(false)
+                                handleSending()
+                                // console.log(sending)
+                                SendImage(JSON.stringify(imageURL.replace(/^data:image\/jpeg;base64,/,"")),handleNext,handleBack,setdatafunc)
+                                handleSending() 
+                                // console.log(sending)
+                                
                             }:handleNext}
                             sx={{ mt: 1, mr: 1 }}
-                            loading = {sending}
+                        
+                            disabled = {index ===1?sending:false}
                         >
-                            {index === steps.length - 1 ? 'Finish' : index === 0 && !usingCamera?'Click To Preview':'Continue'}
+                            {index === steps.length - 1 ? 'Finish' : index === 0 && !usingCamera?'Click To Preview':index ===1?'Predict':'Continue'}
                         </Button>
                         <Button
                             disabled={index === 0 && usingCamera?false: false}
@@ -138,9 +217,9 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
             </Stepper>
             {activeStep === steps.length && (
             <Paper square elevation={0} sx={{ p: 3 }}>
-                <Typography>All steps completed - you&apos;re finished</Typography>
+                <Typography>Your prediction completed. Press finshed for another requeat&apos;</Typography>
                 <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                    Reset
+                    Finish
                 </Button>
             </Paper>
             )}

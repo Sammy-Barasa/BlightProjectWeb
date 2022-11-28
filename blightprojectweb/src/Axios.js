@@ -4,11 +4,11 @@ import axios from "axios";
 
 const axiosFetch = ()=>{
     // const userToken = localStorage.getItem("token")
-    // let headers ={
-    //     "Authorization":"",
-    //     "X-CSRFToken":"",
-    //     'X-Requested-With': 'XMLHttpRequest',
-    //     }
+    let headers ={
+        "Authorization":"",
+        "X-CSRFToken":"",
+        'X-Requested-With': 'XMLHttpRequest',
+        }
     // const csrftoken = Cookies.get("csrftoken")
     
     // if(userToken){
@@ -21,9 +21,11 @@ const axiosFetch = ()=>{
     const axiosInstance = axios.create({
         // "https://work-record-manager.herokuapp.com"
         // http://127.0.0.1:8000
-        baseURL:"https://work-record-manager.herokuapp.com",
-        // credentials: "same-origin",
-        // headers:headers,
+        // http://127.0.0.1:8000/
+        // baseURL:"https://work-record-manager.herokuapp.com",
+        baseURL:"http://127.0.0.1:8000",
+        credentials: "same-origin",
+        headers:headers,
     })
     axiosInstance.defaults.headers.common.accept = 'application/json'
     return  axiosInstance

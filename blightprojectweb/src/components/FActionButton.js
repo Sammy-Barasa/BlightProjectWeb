@@ -2,7 +2,9 @@ import React  from 'react'
 import { Fab, Action } from 'react-tiny-fab';
 import AddIcon from '@mui/icons-material/Add';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-// import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import IconButton from '@mui/material/IconButton';
+// import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 
 
@@ -36,17 +38,20 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
         // onClick={handleDeviceImageUpload}
     >
         {/* <InsertPhotoIcon color='success'> */}
-        <input
+        {/* <input
             type="file"
             id="fileElem"
             multiple
             accept="image/*"
-            onChange = {handleDeviceImageUpload}
-            visibility = "false"
-        >
-          {/* <InsertPhotoIcon color='success'/> */}
-        </input>
-        {/* </InsertPhotoIcon> */}
+            
+            
+        > */}
+       
+        
+        <IconButton color="primary" aria-label="upload picture" component="label">
+          <input hidden accept="image/*" type="file" onChange = {handleDeviceImageUpload} visibility = "false"/>
+          <InsertPhotoIcon color='success'/>
+        </IconButton>
     </Action>
         
     <Action

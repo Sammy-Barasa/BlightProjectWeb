@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #56c447;
-  min-height: 20vh;
+  min-height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,13 +33,14 @@
 }
 .App-content {
   background-color: #56c447;
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  scroll-behavior: auto;
 }
 .App-link {
   color: #61dafb;
@@ -49,9 +50,21 @@
   display: flex;
   flex-direction: column;
   flex: 0 0 100%;
+}
+
+.containerresult {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
   
 }
 
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
