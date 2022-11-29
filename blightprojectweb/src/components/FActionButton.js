@@ -49,8 +49,8 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
        
         
         <IconButton color="primary" aria-label="upload picture" component="label">
-          <input hidden accept="image/*" type="file" onChange = {handleDeviceImageUpload} visibility = "false"/>
-          <InsertPhotoIcon color='success'/>
+          <input hidden accept="image/*" type="file" onChange = {handleDeviceImageUpload} visibility = {false.toString()}/>
+          <InsertPhotoIcon color='success'/>        
         </IconButton>
     </Action>
         

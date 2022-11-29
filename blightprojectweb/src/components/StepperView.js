@@ -60,7 +60,10 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         setUsingCamera(false)
         setSomeThingSelected(false)
         setImageDataUrl(null)
+        setdatafunc(null)
+        setSending(false)
         setActiveStep(0);
+        window.location.reload()
     };
 
     const handleSending = ()=>{
@@ -217,9 +220,9 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
             </Stepper>
             {activeStep === steps.length && (
             <Paper square elevation={0} sx={{ p: 3 }}>
-                <Typography>Your prediction completed. Press finshed for another requeat&apos;</Typography>
+                <Typography>Your prediction completed. Reset for another requequest&apos;</Typography>
                 <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                    Finish
+                    RESET
                 </Button>
             </Paper>
             )}

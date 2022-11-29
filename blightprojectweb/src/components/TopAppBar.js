@@ -19,7 +19,7 @@ function DrawerAppBar() {
   // const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex',xs: '200', sm: '500',color:"#fff" }}>
+    <Box sx={{ display: 'flex',xs: '200', sm: '500'}}>
       <AppBar component="nav">
         <Toolbar >
         

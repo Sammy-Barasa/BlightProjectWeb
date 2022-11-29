@@ -65,9 +65,7 @@ function Detector(){
    	// data url of the image
    	console.log(image_data_url);
     setImageDataUrl(image_data_url)
-    // let imagetag = document.querySelector("image")
-    // imagetag.src = 
-    
+       
   }
 
   const handleCameraAction = ()=>{

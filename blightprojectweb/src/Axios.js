@@ -23,7 +23,7 @@ const axiosFetch = ()=>{
         // http://127.0.0.1:8000
         // http://127.0.0.1:8000/
         // baseURL:"https://work-record-manager.herokuapp.com",
-        baseURL:"http://127.0.0.1:8000",
+        baseURL:"https://blightai.herokuapp.com/",
         credentials: "same-origin",
         headers:headers,
     })
