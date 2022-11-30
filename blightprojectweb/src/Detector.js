@@ -71,8 +71,8 @@ function Detector(){
 
   const stopCamera = (e) => {
     let video = videoRef.current;
-    const stream = video.srcObject;
-    const tracks = stream.getTracks();
+    let stream = video.srcObject;
+    let tracks = stream.getTracks();
   
     for (let i = 0; i < tracks.length; i++) {
       let track = tracks[i];
