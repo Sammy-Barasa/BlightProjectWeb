@@ -107,13 +107,16 @@ function Detector(){
 
 
   const handleswitch = () => {
-    stopCamera()
+    navigator.mediaDevices
+            .getUserMedia(constraints)
+            .then(()=>(
+    stopCamera())).then(()=>(
     setFacingMode(
       prevState =>
         (prevState === 'user')
           ? 'environment'
           : 'user'
-    );
+    )))
     handleCameraAction()
   };
   
