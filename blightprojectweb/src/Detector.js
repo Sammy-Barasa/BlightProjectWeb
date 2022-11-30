@@ -3,6 +3,8 @@ import './App.css';
 import StepperView from './components/StepperView';
 import FootAppBar from './components/FootAppBar'
 
+const FACING_MODE_USER = "user";
+const FACING_MODE_ENVIRONMENT = "environment";
 
 function Detector(){
 
@@ -12,8 +14,7 @@ function Detector(){
   const [imageDataUrl, setImageDataUrl] = React.useState(null)
   const [someThingSelected,setSomeThingSelected] = React.useState(false)
   const [predictionResult, setPredictionResult] = React.useState(null)
-  const FACING_MODE_USER = "user";
-  const FACING_MODE_ENVIRONMENT = "environment";
+  
   const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
 
   const handleDeviceImageUpload = (e)=>{
