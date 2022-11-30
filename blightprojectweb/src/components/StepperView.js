@@ -69,7 +69,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
 
     const handleSending = ()=>{
         setSending(!sending)
-        stopCamera()
+        // stopCamera()
     }
    
   return (
