@@ -19,7 +19,7 @@ function DrawerAppBar() {
   // const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex',xs: '50'}}>
+    <Box sx={{ display: 'flex',xs: '10'}}>
       <AppBar component="nav">
         <Toolbar >
         
@@ -31,12 +31,12 @@ function DrawerAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: '200', sm: '500' } }}
+            sx={{ flexGrow: 1, display: 'flex', xs:'50', sm: '100'}}
             // color="black"
           >
            Blight DetectorML
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: '100', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
                 <Link to={`/${item}`} color={"#fff"}>{item}</Link>
