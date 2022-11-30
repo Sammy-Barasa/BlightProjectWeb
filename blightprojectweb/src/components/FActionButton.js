@@ -12,8 +12,8 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
   const style = {
-    // right:40,
-    left: 650,
+    right:400,
+    // left: 650,
     bottom: 35,
     color: '#3cd656',
   }
