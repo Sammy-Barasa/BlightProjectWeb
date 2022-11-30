@@ -15,7 +15,7 @@ function Detector(){
   const [someThingSelected,setSomeThingSelected] = React.useState(false)
   const [predictionResult, setPredictionResult] = React.useState(null)
   
-  const [facingMode, setFacingMode] = React.useState("user");
+  const [facingMode, setFacingMode] = React.useState('user');
 
   const handleDeviceImageUpload = (e)=>{
     alert("Image upload from device")
@@ -86,9 +86,9 @@ function Detector(){
           // ok, browser supports it
           // alert('ok, browser supports it')
           const constraints = {
-            video : true,
+            video :{facingMode: facingMode},
             audio: false,
-            facingMode: facingMode
+            
           }
                 
           navigator.mediaDevices.getUserMedia(constraints).then((stream)=>{
@@ -110,9 +110,9 @@ function Detector(){
     stopCamera()
     setFacingMode(
       prevState =>
-        (prevState === "user")
-          ? "environment"
-          : "user"
+        (prevState === 'user')
+          ? 'environment'
+          : 'user'
     );
     handleCameraAction()
   };
