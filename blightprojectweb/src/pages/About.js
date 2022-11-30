@@ -15,7 +15,17 @@ function About() {
                     <div className="row">
                         <div className="heading-title text-center">
                             <h3 className="text-uppercase">Meet the team </h3>
-                            <p className="p-top-30 half-txt">Making the project possible</p>
+                            <p className="p-top-30 half-txt">This website is about an algorithm that can identify tomato blight in plant.<br/>This app provides a categorical basis of identify blight into 4 classes based on day.</p>
+                            <p className="p-top-30 half-txt">These 4 classes are:</p>
+                            <p>
+                                Blight infected day 1-3<br/>
+                                Blight infected day 3-5<br/>
+                                Blight infected day 5-7<br/>
+                                Blight infected day 7 onward
+                            </p>
+                            <p>	
+                                It functions is to help farmers identify early blight as possible so as to <br/> avoid transition to late blight and infection of the whole plant
+                            </p>
                         </div>
 
                         <div className="col-md-4 col-sm-4">

@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
         <Grid container spacing={1}>  
-            <Grid item xs={4} sm={6}  md={8} lg={12} xl={12}>
+            <Grid item xs={12} sm={12}  md={12} lg={12} xl={12}>
             <BrowserRouter>
                     {/* <div> */}
                         <header className="App-header">

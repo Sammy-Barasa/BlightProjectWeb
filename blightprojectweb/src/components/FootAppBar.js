@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import 'react-tiny-fab/dist/styles.css';
 import FActionButton from './FActionButton';
+// import Grid from '@mui/material/Grid';
 
 
 // const StyledFab = styled(Fab)({
@@ -22,7 +23,8 @@ export default function FootAppBar({cameraAction, handleDeviceImageUpload }) {
     <div>
       <React.Fragment>
       <CssBaseline />
-      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+      {/* <Grid item xs={4} sm={6}  md={8} lg={12} xl={12}> */}
+      <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0,xs:200, sm:400, md: 600 }}>
         <Toolbar>
           <div className='App-footer'>
           <FActionButton handleCameraAction={cameraAction} handleDeviceImageUpload ={handleDeviceImageUpload }/>
