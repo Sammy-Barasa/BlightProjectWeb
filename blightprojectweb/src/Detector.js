@@ -68,6 +68,18 @@ function Detector(){
        
   }
 
+  const stopCamera = (e) => {
+    let video = videoRef.current;
+    const stream = video.srcObject;
+    const tracks = stream.getTracks();
+  
+    for (let i = 0; i < tracks.length; i++) {
+      let track = tracks[i];
+      track.stop();
+    }
+  
+    video.srcObject = null;
+  }
   const handleCameraAction = ()=>{
       if('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices){
           // ok, browser supports it
@@ -94,6 +106,7 @@ function Detector(){
 
 
   const handleswitch = React.useCallback(() => {
+    stopCamera()
     setFacingMode(
       prevState =>
         prevState === FACING_MODE_USER
@@ -110,6 +123,7 @@ function Detector(){
         someThingSelected = {someThingSelected} setdatafunc={setPredictionResult}
         predictionResult = {predictionResult} handleSwitch = {handleswitch}
         setUsingCamera = {setUsingCamera} setSomeThingSelected = {setSomeThingSelected} setImageDataUrl={setImageDataUrl}
+        stopCamera = {stopCamera}
         />
       </div>
       <footer>

@@ -35,7 +35,7 @@ const steps = [
   
   
 
-export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected, setdatafunc, predictionResult,handleSwitch, setUsingCamera,setSomeThingSelected,setImageDataUrl}) {
+export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected, setdatafunc, predictionResult,handleSwitch, setUsingCamera,setSomeThingSelected,setImageDataUrl, stopCamera}) {
 
     // const override: CSSProperties = {
     //     display: "block",
@@ -62,12 +62,14 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         setImageDataUrl(null)
         setdatafunc(null)
         setSending(false)
+        stopCamera()
         setActiveStep(0);
         window.location.reload()
     };
 
     const handleSending = ()=>{
         setSending(!sending)
+        stopCamera()
     }
    
   return (
