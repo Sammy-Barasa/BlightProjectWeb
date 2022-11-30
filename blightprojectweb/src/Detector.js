@@ -3,8 +3,8 @@ import './App.css';
 import StepperView from './components/StepperView';
 import FootAppBar from './components/FootAppBar'
 
-const FACING_MODE_USER = "user";
-const FACING_MODE_ENVIRONMENT = "environment";
+// const FACING_MODE_USER = "user";
+// const FACING_MODE_ENVIRONMENT = "environment";
 
 function Detector(){
 
@@ -15,7 +15,7 @@ function Detector(){
   const [someThingSelected,setSomeThingSelected] = React.useState(false)
   const [predictionResult, setPredictionResult] = React.useState(null)
   
-  const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
+  const [facingMode, setFacingMode] = React.useState("user");
 
   const handleDeviceImageUpload = (e)=>{
     alert("Image upload from device")
@@ -110,9 +110,9 @@ function Detector(){
     stopCamera()
     setFacingMode(
       prevState =>
-        (prevState === FACING_MODE_USER)
-          ? FACING_MODE_ENVIRONMENT
-          : FACING_MODE_USER
+        (prevState === "user")
+          ? "environment"
+          : "user"
     );
     handleCameraAction()
   };
