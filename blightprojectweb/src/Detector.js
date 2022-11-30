@@ -105,7 +105,7 @@ function Detector(){
   }
 
 
-  const handleswitch = React.useCallback(() => {
+  const handleswitch = () => {
     stopCamera()
     setFacingMode(
       prevState =>
@@ -113,7 +113,7 @@ function Detector(){
           ? FACING_MODE_ENVIRONMENT
           : FACING_MODE_USER
     );
-  }, [FACING_MODE_ENVIRONMENT,FACING_MODE_USER]);
+  };
   
   return (
    <div>
