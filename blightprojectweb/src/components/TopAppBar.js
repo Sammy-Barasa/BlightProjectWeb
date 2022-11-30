@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 // const drawerWidth = 240;
-const navItems = ['home', 'about', 'contact'];
+const navItems = ['about', 'contact'];
 
 function DrawerAppBar() {
   // const { window} = props;
@@ -38,8 +38,8 @@ function DrawerAppBar() {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#ffff' }}>
-                <Link to={`/${item}`}>{item}</Link>
+              <Button key={item} sx={{ color: '#fff' }}>
+                <Link to={`/${item}`} color={"#fff"}>{item}</Link>
                 
               </Button>
             ))}
@@ -51,13 +51,6 @@ function DrawerAppBar() {
   );
 }
 
-// DrawerAppBar.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
- 
-// };
+
 
 export default DrawerAppBar;

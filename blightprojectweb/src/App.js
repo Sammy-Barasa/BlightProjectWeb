@@ -1,7 +1,6 @@
 import React from 'react'
 import TopAppBar from './components/TopAppBar';
 import Detector from './Detector';
-import Home from './pages/Home';
 import About from './pages/About';
 import PageNotFound from './pages/PageNotFound';
 import Contact from './pages/Contact';
@@ -38,8 +37,6 @@ function App() {
                         <Routes> 
                             <Route path='/' element={<Detector/>}/>
                             
-                            <Route path='/home' element={<Home/>}/>
-
                             <Route path='/about' element ={<About/>}/>
 
                             <Route path='/contact' element ={<Contact/>}/>

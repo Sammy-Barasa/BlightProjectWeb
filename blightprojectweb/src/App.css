@@ -100,7 +100,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
 } */
-/* .heading-title {
+.heading-title {
     margin-bottom: 100px;
 }
 .text-center {
@@ -215,4 +215,4 @@
     text-transform: uppercase;
     color: #a5a5a5;
     letter-spacing: 1px;
-} */
+} 

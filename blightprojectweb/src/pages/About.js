@@ -1,79 +1,82 @@
 import React from 'react'
+import imageAdho from '../images/adho.jpeg';
+import imageAllan from '../images/allan.jpeg';
+import imageBarasa from '../images/barasa.jpg';
+import {Helmet} from 'react-helmet';
 
 function About() {
   return (
-    <div class="container">
-                    {/* <div class="row"> */}
-                        {/* <div class="heading-title text-center">
-                            <h3 class="text-uppercase">Our professionals </h3>
-                            <p class="p-top-30 half-txt">Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend. Nam pulvinar vitae neque et porttitor. Praesent sed nisi eleifend. </p>
-                        </div> */}
+  <>
+    <Helmet>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link>
+    </Helmet>
+  <div className="container">
+                    
+                    <div className="row">
+                        <div className="heading-title text-center">
+                            <h3 className="text-uppercase">Meet the team </h3>
+                            <p className="p-top-30 half-txt">Making the project possible</p>
+                        </div>
 
-                        {/* <div class="col-md-4 col-sm-4">
-                            <div class="team-member">
-                                <div class="team-img">
-                                    <img src="https://image.freepik.com/free-photo/man-standing-with-a-black-t-shirt_1187-1045.jpg" alt="team member" class="img-responsive"></img>
+                        <div className="col-md-4 col-sm-4">
+                            <div className="team-member">
+                                <div className="team-img">
+                                    <img src={imageAllan} alt="team member" className="img-responsive" width="1000" height="1200"></img>
+                                    {/* <img id="myImg" src={imageAllan} alt="The Pulpit Rock" width="304" height="228"></img> */}
                                 </div>
-                                <div class="team-hover">
-                                    <div class="desk">
-                                        <h4>Hi There !</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
+                                <div className="team-hover">
+                                    <div className="desk">
+                                        <h4>Innovation at its best</h4>
+                                        <p>We design and build</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="team-title">
-                                <h5>Martin Smith</h5>
-                                <span>founder & ceo</span>
+                            <div className="team-title">
+                                <h5>Allan Were</h5>
+                                <span>Machine Learning & AI</span>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="team-member">
-                                <div class="team-img">
-                                    <img src="src/images/adho.jpeg" alt="team member" class="img-responsive"></img>
+                        <div className="col-md-4 col-sm-4">
+                            <div className="team-member">
+                                <div className="team-img">
+                                    <img src={imageAdho} alt="team member" className="img-responsive" width="300" height="300"></img>
                                 </div>
-                                <div class="team-hover">
-                                    <div class="desk">
-                                        <h4>Hello World</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
+                                <div className="team-hover">
+                                    <div className="desk">
+                                        <h4>I am innovative</h4>
+                                        <p>ABE Engineer.</p>
                                     </div>
-                                    <div class="s-link">
-                                        {/* <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a> */}
-                                    {/* </div>
                                 </div>
-                            </div>  */}
-                            {/* <div class="team-title">
-                                <h5>Franklin Harbet</h5>
-                                <span>HR Manager</span>
-                            </div> */}
-                        {/* </div> */}
-                        {/* <div class="col-md-4 col-sm-4">
-                            <div class="team-member">
-                                <div class="team-img">
-                                    <img src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg" alt="team member" class="img-responsive"></img>
-                                </div>
-                                <div class="team-hover">
-                                    <div class="desk">
-                                        <h4>I love to design</h4>
-                                        <p>I love to introduce myself as a hardcore Web Designer.</p>
-                                    </div>
-                                    {/* <div class="s-link">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    </div> */}
-                                {/* </div>
-                            </div> */} 
-                            {/* <div class="team-title">
-                                <h5>Linda Anderson</h5>
-                                <span>Marketing Manager</span>
+                            </div> 
+                            <div className="team-title">
+                                <h5>Adho Mamo</h5>
+                                <span>Machine learning & AI</span>
                             </div>
-                        </div> */}
+                        </div>
+                        <div className="col-md-4 col-sm-4">
+                            <div className="team-member">
+                                <div className="team-img">
+                                    <img src={imageBarasa} alt="team member" className="img-responsive"></img>
+                                </div>
+                                <div className="team-hover">
+                                    <div className="desk">
+                                        <h4>I love to design</h4>
+                                        <p>Web Designer.</p>
+                                    </div>
+                                    
+                                </div>
+                            </div> 
+                            <div className="team-title">
+                                <h5>Barasa Sammy</h5>
+                                <span>Web Developer</span>
+                            </div>
+                        </div>
 
-                    {/* </div> */}
-                        About
+                    </div>
+                        {/* About */}
                 </div>
+  </>
+    
   )
 }
 
