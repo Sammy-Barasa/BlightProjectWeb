@@ -107,6 +107,11 @@ function Detector(){
 
 
   const handleswitch = () => {
+    const constraints = {
+      video :{facingMode: facingMode},
+      audio: false,
+      
+    }
     navigator.mediaDevices
             .getUserMedia(constraints)
             .then(()=>(
