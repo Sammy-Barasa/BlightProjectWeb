@@ -106,7 +106,7 @@ function Detector(){
 
 
   const handleswitch = () => {
-    stopCamera()
+    // stopCamera()
     setFacingMode(
       prevState =>
         prevState === FACING_MODE_USER
