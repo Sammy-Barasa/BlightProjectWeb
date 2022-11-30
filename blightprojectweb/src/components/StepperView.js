@@ -62,7 +62,9 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         setImageDataUrl(null)
         setdatafunc(null)
         setSending(false)
+        if(usingCamera){
         stopCamera()
+        }
         setActiveStep(0);
         window.location.reload()
     };
