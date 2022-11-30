@@ -38,8 +38,8 @@ function DrawerAppBar() {
           </Typography>
           <Box sx={{ display: { xs: '100', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                <Link to={`/${item}`} color={"#fff"}>{item}</Link>
+              <Button key={item} sx={{ color: '#ffff' }}>
+                <Link to={`/${item}`} color={"#ffff"}>{item}</Link>
                 
               </Button>
             ))}

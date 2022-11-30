@@ -31,6 +31,12 @@ function Contact() {
         Eng Agricultural and Biosytems  <br/>
         <a href="mailto:adhomamo@gmail.com">adhomamo@gmail.com</a><br />
         <br /><br />
+
+        <b> Dr. Stephen Ondimu</b><br />
+        Lecturer at Jomo Kenyatta University of Agriculture and Technology (JKUAT)<br />
+        Biosystems Engineering  <br/>
+        <a href="mailto:lecturer@jkuat.ac.ke">lecturer@jkuat.ac.ke</a><br />
+        <br /><br />
         
       </div>
     </div>
