@@ -18,7 +18,7 @@ import FActionButton from './FActionButton';
 //   margin: '0 auto',
 // });
 
-export default function FootAppBar({cameraAction, handleDeviceImageUpload }) {
+export default function FootAppBar({sampleAction, cameraAction, handleDeviceImageUpload }) {
   return (
     <div>
       <React.Fragment>
@@ -27,7 +27,7 @@ export default function FootAppBar({cameraAction, handleDeviceImageUpload }) {
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0,xs:200, sm:400, md: 600 }}>
         <Toolbar>
           <div className='App-footer'>
-          <FActionButton handleCameraAction={cameraAction} handleDeviceImageUpload ={handleDeviceImageUpload }/>
+          <FActionButton handleSampleAction={sampleAction} handleCameraAction={cameraAction} handleDeviceImageUpload ={handleDeviceImageUpload }/>
           </div>
           
         </Toolbar>

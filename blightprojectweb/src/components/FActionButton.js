@@ -3,6 +3,7 @@ import { Fab, Action } from 'react-tiny-fab';
 import AddIcon from '@mui/icons-material/Add';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import IconButton from '@mui/material/IconButton';
+import CropFreeIcon from '@mui/icons-material/CropFree';
 // import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
@@ -10,7 +11,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 
 
-const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
+const FActionButton = ({handleSampleAction,handleCameraAction, handleDeviceImageUpload }) => {
   const style = {
     right:60,
     // left: 650,
@@ -62,6 +63,16 @@ const FActionButton = ({handleCameraAction, handleDeviceImageUpload }) => {
         
         </PhotoCameraIcon>
     </Action>
+
+    <Action
+        text="try samples"
+        onClick={handleSampleAction}
+        >
+        <CropFreeIcon color='success'>
+        
+        </CropFreeIcon>
+    </Action>
+    
 
     </Fab>
   )

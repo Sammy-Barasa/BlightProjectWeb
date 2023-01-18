@@ -11,6 +11,8 @@ function Detector(){
   let videoRef = useRef(null)
   let photoRef = useRef(null)
   const [usingCamera, setUsingCamera] = React.useState(false);
+  const [usingSample, setUsingSample] = React.useState(false);
+  const [usingImageSelect, setUsingImageSelect] = React.useState(false);
   const [imageDataUrl, setImageDataUrl] = React.useState(null)
   const [someThingSelected,setSomeThingSelected] = React.useState(false)
   const [predictionResult, setPredictionResult] = React.useState(null)
@@ -18,8 +20,16 @@ function Detector(){
   const [facingMode, setFacingMode] = React.useState('user');
 
   const handleDeviceImageUpload = (e)=>{
+    setSomeThingSelected(false)
     alert("Image upload from device")
     e.preventDefault()
+    if(usingCamera){
+      stopCamera()
+    }
+    setUsingCamera(false)
+    setUsingSample(false)
+    setUsingImageSelect(true)
+
     setSomeThingSelected(true)
 
 
@@ -30,7 +40,6 @@ function Detector(){
       // console.log(dataUrl)
       setImageDataUrl(dataUrl)
     }
-    
   }
 
   const handleClearImage = ()=>{
@@ -52,12 +61,14 @@ function Detector(){
     let photo = photoRef.current;
 
     let video = videoRef.current;
-
+    console.log(photo)
     // set photo width and height 
     
-    photo.width = width
+    // photo.width = width
     photo.height = height
+    photo.width = width
 
+    console.log(photo)
     let ctx = photo.getContext('2d')
 
     ctx.drawImage(video,0,0, photo.width, photo.height)
@@ -68,7 +79,7 @@ function Detector(){
     setImageDataUrl(image_data_url)
        
   }
-
+  
   const stopCamera = (e) => {
     let video = videoRef.current;
     let stream = video.srcObject;
@@ -81,7 +92,10 @@ function Detector(){
   
     video.srcObject = null;
   }
+
   const handleCameraAction = ()=>{
+
+      setUsingSample(false)
       if('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices){
           // ok, browser supports it
           // alert('ok, browser supports it')
@@ -92,7 +106,7 @@ function Detector(){
           }
                 
           navigator.mediaDevices.getUserMedia(constraints).then((stream)=>{
-            setUsingCamera(true);
+              setUsingCamera(true);
               // attch stream to video tag
               let video = videoRef.current
               video.srcObject = stream;
@@ -105,6 +119,7 @@ function Detector(){
       }
   }
 
+    
 
   const handleswitch = () => {
     const constraints = {
@@ -125,19 +140,34 @@ function Detector(){
     handleCameraAction()
   };
   
+  const handleSampleAction = ()=>{
+    // set using sample option
+    if(usingCamera){
+      stopCamera()
+    }
+    setUsingCamera(false)
+    console.log("using sample option")
+    setUsingSample(true)
+  }
+
+  const recallCameraAction = ()=>{
+        // stopCamera()
+        // Find a way to updadet photoRef before take photo
+        handleCameraAction()
+  }
   return (
    <div>
       <div className="App-content">
         <StepperView photoRef={photoRef} videoRef={videoRef} handleTakePhoto={handleTakephoto} 
-        usingCamera={usingCamera} handleClearImage ={handleClearImage} imageURL={imageDataUrl}
+        usingCamera={usingCamera} usingImageSelect={usingImageSelect} setUsingImageSelect={setUsingImageSelect} handleClearImage ={handleClearImage} imageURL={imageDataUrl}
         someThingSelected = {someThingSelected} setdatafunc={setPredictionResult}
         predictionResult = {predictionResult} handleSwitch = {handleswitch}
         setUsingCamera = {setUsingCamera} setSomeThingSelected = {setSomeThingSelected} setImageDataUrl={setImageDataUrl}
-        stopCamera = {stopCamera}
+        stopCamera = {stopCamera} usingSample = {usingSample} setUsingSample = {setUsingSample} recallCameraAction={recallCameraAction}
         />
       </div>
       <footer>
-        <FootAppBar cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>
+        <FootAppBar sampleAction={handleSampleAction} cameraAction={handleCameraAction} handleDeviceImageUpload= {handleDeviceImageUpload }/>
       </footer>
       </div>
   );

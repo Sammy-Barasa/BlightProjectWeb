@@ -13,6 +13,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import BounceLoader from "react-spinners/BounceLoader";
 import FlipCameraIosIcon from '@mui/icons-material/FlipCameraIos';
+import sp1 from '../images/samples/image3.jpeg'
+
 
 
 
@@ -33,19 +35,19 @@ const steps = [
     },
   ];
   
-  
+ 
 
-export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCamera, handleClearImage, imageURL,someThingSelected, setdatafunc, predictionResult,handleSwitch, setUsingCamera,setSomeThingSelected,setImageDataUrl, stopCamera}) {
+export default function StepperView({videoRef, photoRef, handleTakePhoto, usingImageSelect, setUsingImageSelect,recallCameraAction,usingCamera, usingSample, setUsingSample, handleClearImage, imageURL,someThingSelected, setdatafunc, predictionResult,handleSwitch, setUsingCamera,setSomeThingSelected,setImageDataUrl, stopCamera}) {
 
     // const override: CSSProperties = {
     //     display: "block",
     //     margin: "0 auto",
     //     borderColor: "red",
     //   };
-
+    const samples = [sp1] 
     const [activeStep, setActiveStep] = React.useState(0);
     const [sending, setSending] = React.useState(false)
-      
+    const [selectedSample, setSelectedSample] = React.useState(null)
 
     const handleNext = () => {
         
@@ -56,12 +58,26 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
+    const handleNetWithCamera = (e)=>{
+        stopCamera()
+        handleNext()
+    }
+
+    const handleClearAndBack =()=>{
+        setSomeThingSelected(false)
+        // recallCameraAction()
+        handleBack()
+        recallCameraAction()
+    }
+
     const handleReset = () => {
         setUsingCamera(false)
         setSomeThingSelected(false)
         setImageDataUrl(null)
         setdatafunc(null)
         setSending(false)
+        setUsingSample(false)
+        setUsingImageSelect(false)
         if(usingCamera){
         stopCamera()
         }
@@ -69,9 +85,33 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         window.location.reload()
     };
 
+    
     const handleSending = ()=>{
         setSending(!sending)
         // stopCamera()
+    }
+
+    const handleSelectedSample =async (e)=>{
+        e.preventDefault()
+        setSomeThingSelected(true)
+        // setSelectedSample(e.target.key)
+        // console.log(e.target.src)
+        // console.log(e.target.value)
+        
+        fetch(e.target.src).then((res)=>{
+            res.blob().then((blob)=>{
+               const file = new File([blob], 'image.jpg', {type: blob.type});
+
+               const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = e => {
+                    let dataUrl = e.target.result;
+                    //   console.log(dataUrl)
+                      setImageDataUrl(dataUrl)
+                    }
+                
+            })
+        });
     }
    
   return (
@@ -95,12 +135,13 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                     {
                         index=== 0?
                         (<div className='container'>
-                            <video className="video" ref={videoRef}>
 
+                           <video className="video" ref={videoRef}>
+                                
                             </video>
-                            
                             {usingCamera?
-                            <>
+                            (<>
+                            
                             <Button
                             variant="contained"
                             onClick={(e)=>{
@@ -122,7 +163,44 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                             sx={{ mt: 1, mr: 1 }}
                             >
                             <FlipCameraIosIcon/>
-                            </Button></>:null}
+                            </Button></>):
+                                usingSample?(
+                                <>
+                                <div className='container'>
+                                    <div className='dragzone'>
+                                        <p style={{color:"black"}}>Samples</p>
+                                        <div>{
+                                        samples.map((sample, index)=>{
+                                       return(
+                                        <Card sx={{ maxWidth: 345 }} key = {index} style={{
+                                            borderStyle: selectedSample===index?"solid":"",
+                                            borderColor: "#2596be",
+                                            bordeRadius: 3
+                                        }}>
+                                        <CardMedia
+                                            component="img"
+                                            alt={sample}
+                                            height="350"
+                                            image={sample}
+                                            src={sample}
+                                            onClick = {(e)=>{
+                                                e.preventDefault()
+                                                setSelectedSample(index)
+                                                handleSelectedSample()}}
+                                            value = {index}
+                                            
+                                        />
+                                       <CardContent> 
+                                            <Typography gutterBottom variant="h5" component="p">
+                                            {`sample ${index+1}`}
+                                            </Typography>
+                                        </CardContent>
+                                        </Card>
+                                        )})}</div>
+                                    </div>
+                                </div>
+                                </>)
+                            :null}
                         </div>):null   
                     }
                     {
@@ -187,7 +265,8 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                         (<div className='container'>
                             {index===1?(<canvas className="photo" ref={photoRef} style={{display:'none'}}></canvas>):
                             (<canvas className="photo" ref={photoRef}></canvas>)}
-                        </div>): null 
+                            {/* <canvas className="photo" ref={photoRef}></canvas> */}
+                        </div>): null
                     }
                     <Box sx={{ mb: 2 }}>
                         { someThingSelected?
@@ -202,19 +281,19 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
                                 handleSending() 
                                 // console.log(sending)
                                 
-                            }:handleNext}
+                            }:index === 0 && usingCamera?handleNetWithCamera:handleNext}
                             sx={{ mt: 1, mr: 1 }}
                         
                             disabled = {index ===1?sending:false}
                         >
-                            {index === steps.length - 1 ? 'Finish' : index === 0 && !usingCamera?'Click To Preview':index ===1?'Predict':'Continue'}
+                            {index === steps.length - 1 ? 'Finish' : index === 0 && usingSample?"Continue":index === 0 && usingImageSelect?'Click To Preview':index ===1?'Predict':'Continue'}
                         </Button>
                         <Button
                             disabled={index === 0 && usingCamera?false: false}
-                            onClick={index ===0? handleClearImage :handleBack}
+                            onClick={index ===0? handleClearImage :index===1 && usingCamera? handleClearAndBack:handleBack}
                             sx={{ mt: 1, mr: 1 }}
                         >
-                            {index === 0?'clear image': 'Back'}
+                            {index === 0?'clear image': index === 0 && usingSample?"":'Back'}
                         </Button></div>):( null)
                         }
                     </Box>
@@ -233,7 +312,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto,usingCa
         </Box>
     </div>
   )
-}
+           }
 
 
 
