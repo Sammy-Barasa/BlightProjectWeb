@@ -13,7 +13,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import BounceLoader from "react-spinners/BounceLoader";
 import FlipCameraIosIcon from '@mui/icons-material/FlipCameraIos';
-import sp1 from '../images/samples/image3.jpeg'
+import sp1 from '../images/samples/image1.JPG'
+import sp2 from '../images/samples/image2.JPG'
+import sp3 from '../images/samples/image3.jpeg'
+import sp4 from '../images/samples/image4.JPG'
+import sp5 from '../images/samples/image5.JPG'
 
 
 
@@ -44,7 +48,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
     //     margin: "0 auto",
     //     borderColor: "red",
     //   };
-    const samples = [sp1] 
+    const samples = [sp1,sp2,sp3,sp4,sp5] 
     const [activeStep, setActiveStep] = React.useState(0);
     const [sending, setSending] = React.useState(false)
     const [selectedSample, setSelectedSample] = React.useState(null)
