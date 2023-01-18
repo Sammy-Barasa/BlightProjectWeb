@@ -42,7 +42,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  scroll-behavior: auto;
+  /* scroll-behavior: auto; */
+  /* overflow:scroll; */
+  overflow:auto;
 }
 .App-link {
   color: #61dafb;
