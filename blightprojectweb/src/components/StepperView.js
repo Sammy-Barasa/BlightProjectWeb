@@ -120,7 +120,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
    
   return (
     <div>
-        <Box sx={{ maxWidth: 400 }}>
+        <Box sx={{ maxWidth: 400 }} style={{marginBottom:10}}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                 <Step key={step.label}>
@@ -179,7 +179,8 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
                                         <Card sx={{ maxWidth: 345 }} key = {index} style={{
                                             borderStyle: selectedSample===index?"solid":"",
                                             borderColor: "#2596be",
-                                            bordeRadius: 3
+                                            bordeRadius: 3,
+                                            marginBottom:5
                                         }}>
                                         <CardMedia
                                             component="img"
