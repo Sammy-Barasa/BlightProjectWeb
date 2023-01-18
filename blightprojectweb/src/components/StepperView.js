@@ -92,7 +92,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
     }
 
     const handleSelectedSample =async (e)=>{
-        e.preventDefault()
+       
         setSomeThingSelected(true)
         // setSelectedSample(e.target.key)
         // console.log(e.target.src)
@@ -186,7 +186,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
                                             onClick = {(e)=>{
                                                 e.preventDefault()
                                                 setSelectedSample(index)
-                                                handleSelectedSample()}}
+                                                handleSelectedSample(e)}}
                                             value = {index}
                                             
                                         />
