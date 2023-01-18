@@ -110,10 +110,9 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
                 reader.readAsDataURL(file);
                 reader.onload = e => {
                     let dataUrl = e.target.result;
-                    console.log(dataUrl)
+                    // console.log(dataUrl)
                     setImageDataUrl(dataUrl)
-                    }
-                
+                }
             })
         });
     }
