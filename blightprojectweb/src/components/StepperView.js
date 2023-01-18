@@ -298,7 +298,7 @@ export default function StepperView({videoRef, photoRef, handleTakePhoto, usingI
                             onClick={index ===0? handleClearImage :index===1 && usingCamera? handleClearAndBack:handleBack}
                             sx={{ mt: 1, mr: 1 }}
                         >
-                            {index === 0?'clear image': index === 0 && usingSample?"":'Back'}
+                            {index === 0&&usingImageSelect?'clear image': index === 0 && usingSample?"":'Back'}
                         </Button></div>):( null)
                         }
                     </Box>
