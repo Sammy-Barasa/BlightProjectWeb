@@ -5,7 +5,6 @@ import axios from "axios";
 const axiosFetch = ()=>{
     // const userToken = localStorage.getItem("token")
     let headers ={
-        "Authorization":"",
         "X-CSRFToken":"",
         'X-Requested-With': 'XMLHttpRequest',
         }
@@ -23,6 +22,7 @@ const axiosFetch = ()=>{
         // http://127.0.0.1:8000
         // http://127.0.0.1:8000/
         // baseURL:"https://work-record-manager.herokuapp.com",
+        // https://blightbackend2-production.up.railway.app/
         baseURL:"https://blightbackend2-production.up.railway.app/",
         credentials: "same-origin",
         headers:headers,
