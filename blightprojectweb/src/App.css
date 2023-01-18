@@ -44,7 +44,8 @@
   color: white;
   /* scroll-behavior: auto; */
   /* overflow:scroll; */
-  overflow:auto;
+  /* overflow:auto; */
+  overflow-y: auto;
 }
 .App-link {
   color: #61dafb;
