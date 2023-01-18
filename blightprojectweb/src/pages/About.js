@@ -78,7 +78,7 @@ function About() {
                             </div> 
                             <div className="team-title">
                                 <h5>Barasa Sammy</h5>
-                                <span>Web Developer</span>
+                                <span>Software Engineer & AI</span>
                             </div>
                         </div>
 
